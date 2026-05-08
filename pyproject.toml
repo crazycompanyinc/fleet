@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fleet"
+version = "0.1.0"
+description = "Agent deployment and orchestration platform: Kubernetes for AI agents."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Fleet" }]
+dependencies = [
+  "click>=8.1",
+  "fastapi>=0.110",
+  "pydantic>=2.0",
+  "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "httpx>=0.27",
+]
+
+[project.scripts]
+fleet = "fleet.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["fleet*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
